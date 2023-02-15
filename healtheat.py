@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import json
 
 # url = "https://health-diet.ru/table_calorie/?utm_source=leftMenu&utm_medium=table_calorie"
 # headers = {
@@ -12,15 +13,25 @@ from bs4 import BeautifulSoup
 # with open("index.html", "w", encoding="utf-8") as file:
 #     file.write(src)
 
-with open("food.html",  encoding="utf-8") as files:
-    datas = files.read()
+#with open("food.html",  encoding="utf-8") as files:
+    #datas = files.read()
 
-soup = BeautifulSoup(datas, "lxml")
+#soup = BeautifulSoup(datas, "lxml")
 
-all_products_href = soup.find_all(class_="mzr-tc-group-item-href")
-all_catigories_dict = {}
-for url in all_products_href:
-    item_text = url.text
-    item_url = "https://health-diet.ru" + url.get("href")
-    all_catigories_dict[item_text] = item_url
-print(all_catigories_dict)
+#переменная с сылками 
+#all_products_href = soup.find_all(class_="mzr-tc-group-item-href")
+
+#словарь вида "Название категории":"URL"
+#all_catigories_dict = {}
+
+#пробегаем циклом и сохраняем данные в словарь
+#for url in all_products_href:
+    #item_text = url.text
+    #item_url = "https://health-diet.ru" + url.get("href")
+    #all_catigories_dict[item_text] = item_url
+
+#with open("all_catigories_dict.json", "w", encoding='utf8') as all_catigories_json:
+    #json.dump(all_catigories_dict, all_catigories_json, indent=4, ensure_ascii=False)
+
+with open("all_catigories_dict.json", "w") as file:
+    all_categories = json.load(file)
